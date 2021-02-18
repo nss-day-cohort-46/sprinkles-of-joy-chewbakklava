@@ -32,5 +32,7 @@ eventHub.addEventListener("click", e => {
 })
 
 const reviewModal = review => {
-    
+    // build HTML
+    // add HTML to modal
+    // toggle modal class to hide
 }
