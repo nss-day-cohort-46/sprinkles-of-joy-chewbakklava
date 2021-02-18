@@ -35,3 +35,8 @@ h1,h2,h3,h4,h5,h6 {
 .menuSection {
 	flex-basis: 62%;
 }
+
+.reviews {
+	font-size: x-small;
+	text-align: end;
+}
