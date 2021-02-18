@@ -1,0 +1,428 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Cake"
+    },
+    {
+      "id": 2,
+      "name": "Bread"
+    },
+    {
+      "id": 3,
+      "name": "Drink"
+    },
+    {
+      "id": 4,
+      "name": "Cookie"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Red Velvet",
+      "price": 35.99,
+      "description": "Red velvet cake is traditionally a red, red-brown, crimson or scarlet-colored chocolate layer cake, layered with ermine icing.",
+      "categoryId": 1
+    },
+    {
+      "id": 2,
+      "name": "Mango Creme Brulee",
+      "price": 49.99,
+      "description": "Vanilla sponge cake layered with vanilla brulee and mango mousse. Decorated with fresh mango, strawberries, chocolate, and mango cream.",
+      "categoryId": 1
+    },
+    {
+      "id": 3,
+      "name": "Multigrain",
+      "price": 16.99,
+      "description": "Multigrain bread is a type of bread prepared with two or more types of grain. Grains used include barley, flax, millet, oats, wheat, and whole-wheat flour, among others.",
+      "categoryId": 2
+    },
+    {
+      "id": 4,
+      "name": "French Garlic Cheese",
+      "price": 19.99,
+      "description": "French bread, mozzarella cheese, parmesan cheese, garlic, olive oil.",
+      "categoryId": 2
+    },
+    {
+      "id": 5,
+      "name": "Hazelnut Latte",
+      "price": 9.89,
+      "description": "Delicious homemade hazelnut milk flavored with maple, cinnamon, nutmeg & vanilla is perfect with coffee or espresso!",
+      "categoryId": 3
+    },
+    {
+      "id": 6,
+      "name": "Caramel Macchiato",
+      "price": 11.89,
+      "description": "Freshly steamed milk with vanilla-flavored syrup marked with espresso and topped with a caramel drizzle for an oh-so-sweet finish.",
+      "categoryId": 3
+    },
+    {
+      "id": 7,
+      "name": "New York Bagel",
+      "price": 7.55,
+      "description": "A bread product originating in Poland, traditionally shaped by hand into the form of a ring from yeasted wheat dough, roughly hand-sized, which is first boiled for a short time in water and then baked.",
+      "categoryId": 2
+    },
+    {
+      "id": 8,
+      "name": "Viennese Whirls",
+      "price": 5,
+      "description": "A soft shortbread biscuit, commonly filled with buttercream and jam",
+      "categoryId": 4
+    },
+    {
+      "id": 9,
+      "name": "Caramel Shortbread",
+      "price": 5,
+      "description": "A biscuit confectionery item composed of a rectangular shortbread biscuit base topped with a very soft caramel filling and a milk chocolate topping.",
+      "categoryId": 4
+    },
+    {
+      "id": 10,
+      "name": "Countess",
+      "price": 5,
+      "description": "Small, slightly sweet shortbread that is typical of Guianan cuisine, the cuisine of French Guiana.",
+      "categoryId": 4
+    },
+    {
+      "id": 11,
+      "name": "Ghoriba",
+      "price": 5,
+      "description": "A round, shortbread cookie prepared in the Maghreb and other parts of the Middle East.",
+      "categoryId": 4
+    },
+    {
+      "id": 12,
+      "name": "Kourabiedes",
+      "price": 5,
+      "description": "Greek shortbread.",
+      "categoryId": 4
+    },
+    {
+      "id": 13,
+      "name": "Blueberry Muffin ",
+      "price": 6.9,
+      "description": "An individual-sized, baked quick bread product with fresh blueberries.",
+      "categoryId": 2
+    },
+    {
+      "id": 14,
+      "name": "Curry Bread",
+      "price": 8.89,
+      "description": "Some Japanese curry is wrapped in a piece of dough, which is coated in flaky bread crumbs, and usually deep fried or baked.",
+      "categoryId": 2
+    },
+    {
+      "id": 15,
+      "name": "Tea",
+      "price": 7.99,
+      "description": "Green, white, oolong, earl grey, matcha, chai, etc.",
+      "categoryId": 3
+    },
+    {
+      "id": 16,
+      "name": "Cappuccino",
+      "price": 9.89,
+      "description": "A cappuccino is an espresso-based coffee drink that originated in Italy, and is traditionally prepared with steamed milk foam.",
+      "categoryId": 3
+    },
+    {
+      "id": 17,
+      "name": "Carrot Cake",
+      "price": 22.89,
+      "description": "Moist, dense, sweet cake made with carrots.",
+      "categoryId": 1
+    },
+    {
+      "id": 18,
+      "name": "Tiramisu",
+      "price": 34.9,
+      "description": "A coffee-flavoured Italian dessert. It is made of ladyfingers (savoiardi) dipped in coffee, layered with a whipped mixture of eggs, sugar and mascarpone cheese, flavoured with cocoa.",
+      "categoryId": 1
+    },
+    {
+      "id": 19,
+      "name": "Tres Leches",
+      "price": 31.99,
+      "description": "A sponge cake—in some recipes, a butter cake—soaked in three kinds of milk: evaporated milk, condensed milk, and heavy cream.",
+      "categoryId": 1
+    },
+    {
+      "id": 20,
+      "name": "Mille-feuille",
+      "price": 28.89,
+      "description": "Three layers of puff pastry alternating with two layers of pastry cream. The top is glazed in white (icing) and brown (chocolate) strips, and combed into a distinctive pattern.",
+      "categoryId": 1
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "name": "Twig Mistyclover",
+      "rewardsMember": true,
+      "email": "twigmc@amail.com",
+      "password": "twig"
+    },
+    {
+      "id": 2,
+      "name": "Frost Muddyriver",
+      "rewardsMember": false,
+      "email": "fmuddyriver@amail.com",
+      "password": "frost"
+    },
+    {
+      "id": 3,
+      "name": "Jade Mountaintree",
+      "rewardsMember": true,
+      "email": "j.mountaintree@amail.com",
+      "password": "jade"
+    },
+    {
+      "id": 4,
+      "name": "Marigold Silkwax",
+      "rewardsMember": false,
+      "email": "goldsilk@amail.com",
+      "password": "marigold"
+    }
+  ],
+  "statuses": [
+    {
+      "id": 1,
+      "label": "Ready for Pickup"
+    },
+    {
+      "id": 2,
+      "label": "Being prepared"
+    },
+    {
+      "id": 3,
+      "label": "Scheduled"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "customerId": 3,
+      "statusId": 1,
+      "timestamp": 1613628996949
+    },
+    {
+      "id": 2,
+      "customerId": 3,
+      "statusId": 1,
+      "timestamp": 1613628996949
+    },
+    {
+      "id": 3,
+      "customerId": 1,
+      "statusId": 1,
+      "timestamp": 1613628996949
+    },
+    {
+      "customerId": 2,
+      "statusId": 1,
+      "timestamp": 1613628996949,
+      "id": 4
+    },
+    {
+      "customerId": 2,
+      "statusId": 1,
+      "timestamp": 1613629033602,
+      "id": 5
+    },
+    {
+      "customerId": 3,
+      "statusId": 1,
+      "timestamp": 1613629258759,
+      "id": 6
+    },
+    {
+      "customerId": 1,
+      "statusId": 1,
+      "timestamp": 1613631214988,
+      "id": 7
+    },
+    {
+      "customerId": 1,
+      "statusId": 1,
+      "timestamp": 1613631242333,
+      "id": 8
+    },
+    {
+      "customerId": 2,
+      "statusId": 2,
+      "timestamp": 1613631255084,
+      "id": 9
+    },
+    {
+      "customerId": 3,
+      "statusId": 1,
+      "timestamp": 1613631281534,
+      "id": 10
+    },
+    {
+      "customerId": 1,
+      "statusId": 2,
+      "timestamp": 1613631291930,
+      "id": 11
+    },
+    {
+      "customerId": 2,
+      "statusId": 3,
+      "timestamp": 1613631302278,
+      "id": 12
+    },
+    {
+      "customerId": 3,
+      "statusId": 3,
+      "timestamp": 1613631309392,
+      "id": 13
+    }
+  ],
+  "orderProducts": [
+    {
+      "id": 1,
+      "orderId": 1,
+      "productId": 1
+    },
+    {
+      "id": 2,
+      "orderId": 1,
+      "productId": 2
+    },
+    {
+      "id": 3,
+      "orderId": 1,
+      "productId": 3
+    },
+    {
+      "orderId": 4,
+      "productId": 1,
+      "id": 4
+    },
+    {
+      "orderId": 4,
+      "productId": 1,
+      "id": 5
+    },
+    {
+      "orderId": 4,
+      "productId": 1,
+      "id": 6
+    },
+    {
+      "orderId": 5,
+      "productId": 1,
+      "id": 7
+    },
+    {
+      "orderId": 5,
+      "productId": 1,
+      "id": 8
+    },
+    {
+      "orderId": 5,
+      "productId": 1,
+      "id": 9
+    },
+    {
+      "orderId": 6,
+      "productId": 4,
+      "id": 10
+    },
+    {
+      "orderId": 6,
+      "productId": 2,
+      "id": 11
+    },
+    {
+      "orderId": 6,
+      "productId": 5,
+      "id": 12
+    },
+    {
+      "orderId": 7,
+      "productId": 1,
+      "id": 13
+    },
+    {
+      "orderId": 7,
+      "productId": 3,
+      "id": 14
+    },
+    {
+      "orderId": 7,
+      "productId": 2,
+      "id": 15
+    },
+    {
+      "orderId": 8,
+      "productId": 1,
+      "id": 16
+    },
+    {
+      "orderId": 8,
+      "productId": 1,
+      "id": 17
+    },
+    {
+      "orderId": 8,
+      "productId": 1,
+      "id": 18
+    },
+    {
+      "orderId": 9,
+      "productId": 5,
+      "id": 19
+    },
+    {
+      "orderId": 10,
+      "productId": 15,
+      "id": 20
+    },
+    {
+      "orderId": 10,
+      "productId": 2,
+      "id": 21
+    },
+    {
+      "orderId": 10,
+      "productId": 15,
+      "id": 22
+    },
+    {
+      "orderId": 11,
+      "productId": 13,
+      "id": 23
+    },
+    {
+      "orderId": 11,
+      "productId": 13,
+      "id": 24
+    },
+    {
+      "orderId": 11,
+      "productId": 9,
+      "id": 25
+    },
+    {
+      "orderId": 12,
+      "productId": 20,
+      "id": 26
+    },
+    {
+      "orderId": 13,
+      "productId": 6,
+      "id": 27
+    },
+    {
+      "orderId": 13,
+      "productId": 16,
+      "id": 28
+    }
+  ]
+}

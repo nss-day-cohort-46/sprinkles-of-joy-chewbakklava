@@ -1,0 +1,15 @@
+.userNav__links {
+  display: flex;
+  list-style: none;
+  text-decoration: underline;
+  justify-content: space-around;
+}
+
+.customerSection {
+  border-right: 3px solid wheat;
+}
+
+.cart {
+  display: flex;
+  justify-content: space-between;
+}
