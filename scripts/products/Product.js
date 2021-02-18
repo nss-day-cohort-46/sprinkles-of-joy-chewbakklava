@@ -4,11 +4,10 @@ const eventHub = document.querySelector("#container")
 
 export const Product = (product, category, reviews, customers) => {
     const reviewsWithCustomers = reviews.map(review => {
-        const author = customers.find(customer => customer.id === review.customerId)
+        const customer = customers.find(customer => customer.id === review.customerId)
         return {
-            review: review.text,
-            rating: review.rating,
-            author: author.name
+            review: review,
+            customer: customer
         }
     })
 
