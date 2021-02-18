@@ -12,7 +12,7 @@ let bakeryCategories = []
 let reviews = []
 let customers = []
 
-export const ProductList = () => {
+export const ProductList = (filteredProducts, productCategory) => {
   getProducts()
     .then(getCategories)
     .then(getReviews)
@@ -22,6 +22,10 @@ export const ProductList = () => {
       bakeryCategories = useCategories()
       reviews = useReviews()
       customers = useCustomers()
+
+      if(filteredProducts) {
+          bakeryProducts = filteredProducts
+      }
 
       render()
     })
@@ -39,16 +43,21 @@ const render = () => {
 eventHub.addEventListener("categorySelected", event => {
   
   
-    // debugger
+   
+    let filteredProducts
+    let productCategory
     if(event.detail.selectedCategory > 0) {
-      // debugger
-      // let selectedCategory = event.detail.selectedCategory
-      const filteredProducts = bakeryProducts.filter(prod => prod.categoryId === event.detail.selectedCategory)
-      const productCategory = bakeryCategories.find(cat => cat.id === event.detail.selectedCategory)
-      
-      contentTarget.innerHTML = filteredProducts.map(prod => Product(prod, productCategory)).join("")} 
+      getProducts()
+      .then(() => {
+        bakeryProducts = useProducts()
+        
+        filteredProducts = bakeryProducts.filter(prod => prod.categoryId === event.detail.selectedCategory)
+        
+        ProductList(filteredProducts, productCategory)})
+
+    } 
       else {
-      contentTarget.innerHTML = ProductList()
+      ProductList()
     }
     
 })
