@@ -12,7 +12,7 @@ let bakeryCategories = []
 let reviews = []
 let customers = []
 
-export const ProductList = (filteredProducts, productCategory) => {
+export const ProductList = (filteredProducts) => {
   getProducts()
     .then(getCategories)
     .then(getReviews)
@@ -41,8 +41,6 @@ const render = () => {
 }
 
 eventHub.addEventListener("categorySelected", event => {
-  
-  
    
     let filteredProducts
     let productCategory
@@ -53,7 +51,7 @@ eventHub.addEventListener("categorySelected", event => {
         
         filteredProducts = bakeryProducts.filter(prod => prod.categoryId === event.detail.selectedCategory)
         
-        ProductList(filteredProducts, productCategory)})
+        ProductList(filteredProducts)})
 
     } 
       else {
