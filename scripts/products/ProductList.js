@@ -25,3 +25,7 @@ const render = () => {
     return Product(product, productCategory)
   }).join("")
 }
+
+eventHub.addEventListener("categorySelected", event => {
+    
+})

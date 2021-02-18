@@ -32,6 +32,7 @@ const render = () => {
 
 eventHub.addEventListener("click", e => {
   if (e.target.id === "customerLogin") {
+    debugger
     e.preventDefault()
     const loginEmail = document.querySelector(".login-email")
     const loginPassword = document.querySelector(".login-password")
