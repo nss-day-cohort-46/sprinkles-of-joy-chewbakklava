@@ -1,6 +1,6 @@
 # Sprinkles of Joy
 
-[Google Draw ERD] (https://docs.google.com/drawings/d/1RzkPSzAOyOO1Y_cofPfyiaggFiQ7U92v4BOln6qu9ME/edit?usp=sharing)
+[Google Draw ERD](https://docs.google.com/drawings/d/1RzkPSzAOyOO1Y_cofPfyiaggFiQ7U92v4BOln6qu9ME/edit?usp=sharing)
 
 ## Settings
 After each team member clones down the repository
