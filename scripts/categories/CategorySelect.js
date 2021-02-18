@@ -27,7 +27,7 @@ eventHub.addEventListener("change", changeEvent => {
   if (changeEvent.target.id === "categorySelect") {
     const categoryCustomEvent = new CustomEvent("categorySelected", {
       detail: {
-        selectedCategory: changeEvent.target.value
+        selectedCategory: parseInt(changeEvent.target.value)
       }
     })
     eventHub.dispatchEvent(categoryCustomEvent)
