@@ -6,9 +6,10 @@ const contentTarget = document.querySelector(".filter__category")
 let categories = []
 
 export const CategorySelect = () => {
-  getCategories()
-  categories = useCategories()
-  render()
+  getCategories().then( () => {
+    categories = useCategories()
+    render()
+  })
 }
 
 const render = () => {
