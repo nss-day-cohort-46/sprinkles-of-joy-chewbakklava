@@ -8,8 +8,10 @@
 export const authHelper = {
   isUserLoggedIn: () => {
     if (sessionStorage.getItem("soj-customer-id")) {
+      console.log("User is logged in")
       return true
     }
+    console.log("User is NOT logged in")
     return false
   },
   getCurrentUserId: () => sessionStorage.getItem("soj-customer-id"),
