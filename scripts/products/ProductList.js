@@ -1,19 +1,28 @@
 import { getProducts, useProducts } from "./ProductProvider.js"
 import { getCategories, useCategories } from "../categories/CategoryProvider.js"
 import { Product } from "./Product.js"
+import { getReviews, useReviews } from "../reviews/ReviewProvider.js"
+import { getCustomers, useCustomers } from "../customers/CustomerProvider.js"
 
 const eventHub = document.querySelector("#container")
 const contentTarget = document.querySelector(".menu__items")
 
 let bakeryProducts = []
 let bakeryCategories = []
+let reviews = []
+let customers = []
 
 export const ProductList = () => {
   getProducts()
     .then(getCategories)
+    .then(getReviews)
+    .then(getCustomers)
     .then(() => {
       bakeryProducts = useProducts()
       bakeryCategories = useCategories()
+      reviews = useReviews()
+      customers = useCustomers()
+
       render()
     })
 }
@@ -21,7 +30,8 @@ export const ProductList = () => {
 const render = () => {
   contentTarget.innerHTML = bakeryProducts.map(product => {
     const productCategory = bakeryCategories.find(cat => cat.id === product.categoryId)
+    const productReviews = reviews.filter(review => review.productId === product.id)
 
-    return Product(product, productCategory)
+    return Product(product, productCategory, productReviews, customers)
   }).join("")
 }

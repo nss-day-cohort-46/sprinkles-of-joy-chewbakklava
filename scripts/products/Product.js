@@ -1,6 +1,17 @@
+import { Review } from "../reviews/Review.js"
+
 const eventHub = document.querySelector("#container")
 
-export const Product = (product, category) => {
+export const Product = (product, category, reviews, customers) => {
+    const reviewsWithCustomers = reviews.map(review => {
+        const author = customers.find(customer => customer.id === review.customerId)
+        return {
+            review: review.text,
+            rating: review.rating,
+            author: author.name
+        }
+    })
+
     return `
       <section class="baked_good">
           <header class="baked_good__header">
@@ -10,6 +21,9 @@ export const Product = (product, category) => {
           <div>
               <button id="addProduct">Add to Cart</button>
               <p>${product.description} [${category.name}]</p>
+          </div>
+          <div class="reviews">
+              ${reviewsWithCustomers.map(review => Review(review)).join("")}
           </div>
       </section>
   `
