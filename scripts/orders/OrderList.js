@@ -8,7 +8,7 @@ import { getOrders, useOrders } from "./OrderProvider.js"
 const eventHub = document.querySelector("#container")
 const contentContainer = document.querySelector(".userOrders")
 
-const loggedInCustomerId = parseInt(authHelper.getCurrentUserId())
+let loggedInCustomerId = ""
 let customerOrders = []
 let orderProducts = []
 let allProducts = []
@@ -17,9 +17,11 @@ export const OrderList = () => {
   
   if (authHelper.isUserLoggedIn()) {
     getOrders()
+    .then(authHelper.getCurrentUserId())
     .then(getProducts)
     .then(getOrderProducts)
       .then(() => {
+        loggedInCustomerId = authHelper.getCurrentUserId()
         customerOrders = useOrders()
         orderProducts = useOrderProducts()
         allProducts = useProducts()
@@ -31,8 +33,8 @@ export const OrderList = () => {
 
 let ordersHtmlRepresentation
 const makeHtmlRep = () => {
-  // returns array of orders for current logged in user
-  const filteredOrders = customerOrders.filter(order => order.customerId === loggedInCustomerId)
+  // returns array of orders for current logged in customer
+  const filteredOrders = customerOrders.filter(order => order.customerId === parseInt(loggedInCustomerId))
 
   ordersHtmlRepresentation = filteredOrders.map(order => {
     // returns array of related objects for the filtered orders
@@ -46,8 +48,7 @@ const makeHtmlRep = () => {
     return Order(order, productsOfOrder)
 
   }).join(" ")
-  
-  
+   
 }
 
 
