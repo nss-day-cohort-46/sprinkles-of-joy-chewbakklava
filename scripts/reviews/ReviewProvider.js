@@ -1,3 +1,4 @@
+import { ProductList } from '../products/ProductList.js'
 import { bakeryAPI } from '../Settings.js'
 
 let reviewsCollection = []
@@ -18,6 +19,5 @@ export const saveReview = review => {
         },
         body: JSON.stringify(review)
     })
-    .then(getReviews)
-    .then(console.log('saved!'))
+    .then( ProductList() )
 }
