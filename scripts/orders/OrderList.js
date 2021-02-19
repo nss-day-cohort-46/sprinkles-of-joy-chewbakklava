@@ -31,7 +31,7 @@ export const OrderList = () => {
   }
 }
 
-let filteredOrders
+export let filteredOrders
 export const filterOrders = () => { // returns array of orders for current logged in customer
   filteredOrders = customerOrders.filter(order => order.customerId === parseInt(loggedInCustomerId))}
 
@@ -84,3 +84,7 @@ eventHub.addEventListener("click", event => {
 const closeModal = () => {
   contentContainer.innerHTML = ""
 }
+
+eventHub.addEventListener("ordersStateChanged", event => {
+  OrderList()
+})
