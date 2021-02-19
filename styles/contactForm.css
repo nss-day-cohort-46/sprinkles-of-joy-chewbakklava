@@ -1,0 +1,19 @@
+#modal--contact {
+    display: none;
+    flex-direction: column;
+  }
+  
+  #contactForm__select--label {
+    display: block;
+  }
+  
+  #contactForm__top {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0px;
+  }
+  
+  #contactForm__submitButton{
+    align-self: flex-end;
+    margin: 5px 0px;
+  }
