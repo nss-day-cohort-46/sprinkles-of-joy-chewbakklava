@@ -40,7 +40,7 @@ eventHub.addEventListener("click", event => {
         customEvent = new CustomEvent("showNewReviewForm")
         break;
       case "pastOrders":
-        customEvent = new CustomEvent("showPastOrders")
+        customEvent = new CustomEvent("showOrderHistory")
         break;
     }
     eventHub.dispatchEvent(customEvent)
