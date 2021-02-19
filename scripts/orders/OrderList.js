@@ -17,11 +17,10 @@ export const OrderList = () => {
   
   if (authHelper.isUserLoggedIn()) {
     getOrders()
-    .then(authHelper.getCurrentUserId())
+    .then(loggedInCustomerId = authHelper.getCurrentUserId())
     .then(getProducts)
     .then(getOrderProducts)
       .then(() => {
-        loggedInCustomerId = authHelper.getCurrentUserId()
         customerOrders = useOrders()
         orderProducts = useOrderProducts()
         allProducts = useProducts()
