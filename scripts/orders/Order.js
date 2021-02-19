@@ -1,3 +1,5 @@
+import { filterOrders } from "./OrderList"
+
 export const Order = (customerOrder, productsArray) => {
   let total = 0
   // debugger
@@ -12,6 +14,21 @@ export const Order = (customerOrder, productsArray) => {
       </section>
       <p>${new Date(customerOrder.timestamp).toLocaleString('en-US')}</p>
       <p>${customerOrder.status.label}</p>
-    </div>
+      </div>
+      <button id="deleteOrder__${customerOrder.id}">Delete</button>
   `
 }
+
+const eventHub = document.querySelector("#container")
+
+eventHub.addEventListener("click", event => {
+  if (event.target.id.startsWith("deleteOrder__")) {
+    const [idPrefix, orderId] = event.target.id.split("__")
+    getOrders()
+    .then(loggedInCustomerId = authHelper.getCurrentUserId())
+    .then(() => {
+      let filteredOrders = ""
+      filterOrders()
+  }) 
+  }
+  })

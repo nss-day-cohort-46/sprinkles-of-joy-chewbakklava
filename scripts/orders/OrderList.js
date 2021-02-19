@@ -24,17 +24,20 @@ export const OrderList = () => {
         customerOrders = useOrders()
         orderProducts = useOrderProducts()
         allProducts = useProducts()
+        filterOrders()
         makeHtmlRep()
         render()
       })
   }
 }
 
+let filteredOrders
+export const filterOrders = () => { // returns array of orders for current logged in customer
+  filteredOrders = customerOrders.filter(order => order.customerId === parseInt(loggedInCustomerId))}
+
 let ordersHtmlRepresentation
 const makeHtmlRep = () => {
-  // returns array of orders for current logged in customer
-  const filteredOrders = customerOrders.filter(order => order.customerId === parseInt(loggedInCustomerId))
-
+ 
   ordersHtmlRepresentation = filteredOrders.map(order => {
     // returns array of related objects for the filtered orders
     const relatedOrderProducts = orderProducts.filter(op => op.orderId === order.id)
@@ -62,7 +65,7 @@ const render = () => {
         <h5>Ordered on</h5>
         ${ordersHtmlRepresentation}
         </div>
-        <button id="modal--close">Close</button>
+        <button id="modal--close">Close Order History</button>
         </div>
     </div>
       `
