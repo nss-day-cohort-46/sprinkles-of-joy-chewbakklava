@@ -1,6 +1,6 @@
 import { authHelper } from "../auth/authHelper.js"
 import { getCustomer } from "../customers/CustomerProvider.js"
-import { useReviews } from "./ReviewProvider.js"
+import { deleteReview, useReviews } from "./ReviewProvider.js"
 
 const eventHub = document.querySelector('#container')
 const reviewModalElement = document.querySelector('.productReview')
@@ -38,18 +38,24 @@ eventHub.addEventListener("click", e => {
 const reviewModal = review => {
     getCustomer(review.customerId)
     .then( foundCustomer => {
-        const customer = foundCustomer
-        const currentUserId = authHelper.getCurrentUserId()
-    
+        const currentCustomerId = parseInt(authHelper.getCurrentUserId())
+        const authorId = foundCustomer.id
+        let deleteButton = ""
+        if (currentCustomerId === authorId) {
+            deleteButton = `<button class="review__modal--delete" id="deleteButton--${review.id}">Delete</button>`
+        }
         let reviewHTML = `
             <div id="review__modal" class="modal--parent">
                 <div class="modal--content">
-                    <span class="close">&times;</span>
-                    <p class="reviewModal__text">${review.text}</p>
-                    <div class="review__modal--middle">
-                        <p class="reviewModal__rating">${reviewStars[review.rating]}</p>
-                        <p class="reviewModal__customerName">${customer.name}</p>
-                    </div>
+                    <div class="reviewModal">
+                        <span class="close">&times;</span>
+                        <p class="reviewModal__text">${review.text}</p>
+                        <div class="review__modal--middle">
+                            <p class="reviewModal__rating">${reviewStars[review.rating]}</p>
+                            <p class="reviewModal__customerName">${foundCustomer.name}</p>
+                        </div>
+                        ${deleteButton}
+                    </div
                 </div>
             </div>
             `
@@ -65,5 +71,13 @@ const reviewModal = review => {
 eventHub.addEventListener("click", e => {
     if (e.target.classList.contains("close")) {
         reviewModalElement.classList.toggle('hidden')
+    }
+})
+
+eventHub.addEventListener("click", e => {
+    if (e.target.id.includes("deleteButton--")) {
+        const [prefix, reviewId] = e.target.id.split("--")
+        deleteReview(reviewId)
+        reviewModalElement.classList.add("hidden")
     }
 })

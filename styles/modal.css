@@ -32,9 +32,18 @@
 
 /* ------ REVIEW DETAIL ------ */
 
+.reviewModal {
+  display: flex;
+  flex-direction: column;
+}
+
 .review__modal--middle {
   display: flex;
   justify-content: space-between;
+}
+
+.review__modal--delete {
+  align-self: flex-end;
 }
 
 /* ------ REVIEW FORM ------ */
