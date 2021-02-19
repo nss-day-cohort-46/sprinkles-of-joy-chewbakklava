@@ -54,19 +54,27 @@ eventHub.addEventListener("addToCart", event => {
 
 eventHub.addEventListener("click", clickEvent => {
   if (clickEvent.target.id === "placeOrder" && productsInCart.length !== 0) {
-    const currentCustomerId = parseInt(authHelper.getCurrentUserId())
-    getStatuses()
-      .then(() => {
-        const allStatuses = useStatuses()
-        const initialOrderStatus = allStatuses.find(status => status.label.toLowerCase() === "Scheduled".toLowerCase())
-
-        const newOrder = {
-          "customerId": currentCustomerId,
-          "statusId": initialOrderStatus.id,
-          "timestamp": Date.now()
-        }
-
-        return saveOrder(newOrder, productsInCart)
-      })
+      if (authHelper.isUserLoggedIn()) {
+      const currentCustomerId = parseInt(authHelper.getCurrentUserId())
+      getStatuses()
+        .then(() => {
+          const allStatuses = useStatuses()
+          const initialOrderStatus = allStatuses.find(status => status.label.toLowerCase() === "Scheduled".toLowerCase())
+          const newOrder = {
+            "customerId": currentCustomerId,
+            "statusId": initialOrderStatus.id,
+            "timestamp": Date.now()
+          }
+          saveOrder(newOrder, productsInCart)
+          resetCart()
+        })
+      } else {
+        alert(`Please log in to place an order.`)
+      }
   }
 })
+
+const resetCart = () => {
+  userCart.innerHTML = ""
+  productsInCart = []
+}
