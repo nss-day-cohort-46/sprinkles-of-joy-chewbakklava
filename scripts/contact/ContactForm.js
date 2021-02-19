@@ -23,10 +23,12 @@ export const contactForm = () => {
     `
 }
 
-const eventHub = document.querySelector("#container")
+const eventHub = document.querySelector(".navContainer")
 
 eventHub.addEventListener("click", event => {
+    debugger
     if (event.target.id === "showContactForm") {
-        formContainer.style.display = "flex"
+        const formModal = document.querySelector("#modal--contact")
+        formModal.style.display = "flex"
     }
 })
