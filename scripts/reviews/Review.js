@@ -33,7 +33,7 @@ eventHub.addEventListener("click", e => {
 })
 
 const reviewModal = review => {
-    // build HTML
+
     let reviewHTML = `
         <div id="review__modal" class="modal--parent">
             <div class="modal--content">
@@ -44,13 +44,13 @@ const reviewModal = review => {
         </div>
         `
 
-    // add HTML to modal
     reviewModalElement.innerHTML = reviewHTML
 
-    // toggle modal class to hide
+    // remove class 'hidden' from reviewModal
     reviewModalElement.classList.toggle('hidden')
 }
 
+// add class 'hidden' to reviewModal if x is clicked
 eventHub.addEventListener("click", e => {
     if (e.target.classList.contains("close")) {
         reviewModalElement.classList.toggle('hidden')
