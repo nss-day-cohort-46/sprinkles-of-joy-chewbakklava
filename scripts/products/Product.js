@@ -24,9 +24,6 @@ export const Product = (product, category, reviews, customers) => {
           <div class="reviews">
               ${reviewsWithCustomers.map(review => Review(review)).join("")}
           </div>
-          <div class="reviewButtonContainer">
-              <button id="createReview--${product.id}">Leave A Review</button>
-          </div>
       </section>
   `
 }
@@ -40,17 +37,5 @@ eventHub.addEventListener("click", evt => {
             }
         })
         eventHub.dispatchEvent(addProductEvent)
-    }
-})
-
-eventHub.addEventListener("click", e => {
-    if (e.target.id.startsWith("createReview--")) {
-        const productId = e.target.id.split("--")[1]
-        const reviewFormRequested = new CustomEvent("reviewFormRequested", {
-            detail: {
-                productId: productId
-            }
-        })
-        eventHub.dispatchEvent(reviewFormRequested)
     }
 })
