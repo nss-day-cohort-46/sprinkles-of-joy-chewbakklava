@@ -1,8 +1,10 @@
 import { authHelper } from "../auth/authHelper.js"
 import { useProducts } from "../products/ProductProvider.js"
+import { saveReview } from "./ReviewProvider.js"
 
 const eventHub = document.querySelector('#container')
 const reviewModalElement = document.querySelector('.productReview')
+const customerId = parseInt(authHelper.getCurrentUserId())
 
 eventHub.addEventListener("reviewFormRequested", e => {
     const productId = e.detail.productId
@@ -34,6 +36,9 @@ export const ReviewForm = () => {
                         <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
                     </select>
                 </div>
+                <label for="reviewForm__title">Review Title</label>
+                <input id="reviewForm__title" type="text">
+                <label for="reviewForm__text">Review</label>
                 <textarea id="reviewForm__text" rows="4" cols="50"></textarea>
                 <button id="reviewForm__submitButton">Submit Review</button>
             </form>
@@ -46,4 +51,22 @@ export const ReviewForm = () => {
 
 eventHub.addEventListener("showNewReviewForm", e => {
     ReviewForm()
+})
+
+eventHub.addEventListener("click", e => {
+    if (e.target.id === "reviewForm__submitButton") {
+        e.preventDefault()
+        const review = {
+            title: document.getElementById('reviewForm__title').value,
+            text: document.getElementById('reviewForm__text').value,
+            rating: parseInt(document.getElementById('reviewForm__rating').value),
+            customerId: customerId,
+            productId: parseInt(document.getElementById('reviewForm__productSelect').value)
+        }
+        saveReview(review)
+        .then( () => {
+            document.querySelector('.reviewForm').reset()
+            reviewModalElement.classList.add("hidden")
+        })
+    }
 })

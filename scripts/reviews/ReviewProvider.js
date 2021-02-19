@@ -9,3 +9,15 @@ export const getReviews = () => {
         .then(res => res.json())
         .then(pRes => reviewsCollection = pRes)
 }
+
+export const saveReview = review => {
+    return fetch(`${bakeryAPI.baseURL}/reviews`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(review)
+    })
+    .then(getReviews)
+    .then(console.log('saved!'))
+}
