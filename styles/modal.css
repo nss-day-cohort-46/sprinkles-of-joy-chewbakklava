@@ -29,3 +29,41 @@
 .hidden {
   display: none;
 }
+
+/* ------ REVIEW DETAIL ------ */
+
+.reviewModal {
+  display: flex;
+  flex-direction: column;
+}
+
+.review__modal--middle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review__modal--delete {
+  align-self: flex-end;
+}
+
+/* ------ REVIEW FORM ------ */
+
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#reviewForm__select--label {
+  display: block;
+}
+
+.reviewForm__top {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0px;
+}
+
+#reviewForm__submitButton{
+  align-self: flex-end;
+  margin: 5px 0px;
+}
