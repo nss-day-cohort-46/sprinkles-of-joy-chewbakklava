@@ -17,5 +17,3 @@ CategorySelect()
 ProductList()
 
 //==================================TEST CODE====================================//
-
-getProducts().then(ReviewForm)
