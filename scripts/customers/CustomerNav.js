@@ -30,6 +30,7 @@ eventHub.addEventListener("userLoggedIn", event => {
 
 eventHub.addEventListener("click", event => {
   if (event.target.id.startsWith("userNav--")) {
+    
     const [idPrefix, idSuffix] = event.target.id.split("--")
     let customEvent
     switch (idSuffix) {
@@ -40,7 +41,7 @@ eventHub.addEventListener("click", event => {
         customEvent = new CustomEvent("showNewReviewForm")
         break;
       case "pastOrders":
-        customEvent = new CustomEvent("showPastOrders")
+        customEvent = new CustomEvent("showOrderHistory")
         break;
     }
     eventHub.dispatchEvent(customEvent)

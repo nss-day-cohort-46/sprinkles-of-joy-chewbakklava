@@ -3,9 +3,9 @@ import { saveOrderProducts } from "./OrderProductProvider.js"
 
 const eventHub = document.querySelector("#container")
 
-let orders = []
+let customerOrders = []
 
-export const useOrders = () => orders.slice()
+export const useOrders = () => customerOrders.slice()
 
 export const getOrders = () => {
   return fetch(`${bakeryAPI.baseURL}/orders?_expand=status`)
