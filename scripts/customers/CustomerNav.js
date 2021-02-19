@@ -30,6 +30,7 @@ eventHub.addEventListener("userLoggedIn", event => {
 
 eventHub.addEventListener("click", event => {
   if (event.target.id.startsWith("userNav--")) {
+    
     const [idPrefix, idSuffix] = event.target.id.split("--")
     let customEvent
     switch (idSuffix) {

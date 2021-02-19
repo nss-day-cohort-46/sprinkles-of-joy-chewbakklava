@@ -1,26 +1,58 @@
 import { authHelper } from "../auth/authHelper.js"
 import { getCustomer } from "../customers/CustomerProvider.js"
+import { getProducts, useProducts } from "../products/ProductProvider.js"
 import { Order } from "./Order.js"
+import { getOrderProducts, useOrderProducts } from "./OrderProductProvider.js"
 import { getOrders, useOrders } from "./OrderProvider.js"
 
 const eventHub = document.querySelector("#container")
 const contentContainer = document.querySelector(".userOrders")
 
+const loggedInCustomerId = parseInt(authHelper.getCurrentUserId())
 let customerOrders = []
+let orderProducts = []
+let allProducts = []
 
 export const OrderList = () => {
+  
   if (authHelper.isUserLoggedIn()) {
-
     getOrders()
+    .then(getProducts)
+    .then(getOrderProducts)
       .then(() => {
         customerOrders = useOrders()
+        orderProducts = useOrderProducts()
+        allProducts = useProducts()
+        makeHtmlRep()
         render()
       })
   }
 }
 
+let ordersHtmlRepresentation
+const makeHtmlRep = () => {
+  // returns array of orders for current logged in user
+  const filteredOrders = customerOrders.filter(order => order.customerId === loggedInCustomerId)
+
+  ordersHtmlRepresentation = filteredOrders.map(order => {
+    // returns array of related objects for the filtered orders
+    const relatedOrderProducts = orderProducts.filter(op => op.orderId === order.id)
+
+    // returns array all products for each filtered order
+    const productsOfOrder = relatedOrderProducts.map(rop => {
+      return allProducts.find(product => rop.productId === product.id)
+    })
+   
+    return Order(order, productsOfOrder)
+
+  }).join(" ")
+  
+  
+}
+
+
 const render = () => {
-  const ordersHtmlRepresentation = customerOrders.map(order => Order(order)).join("")
+  // const ordersHtmlRepresentation = customerOrders.map(order => Order(order)).join("")
 
   contentContainer.innerHTML = `
   <div id="orders__modal" class="modal--parent">
