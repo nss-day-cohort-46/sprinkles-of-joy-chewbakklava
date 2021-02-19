@@ -11,10 +11,12 @@ import { LoginForm } from "./customers/LoginForm.js"
 import { ProductList } from "./products/ProductList.js"
 import { ReviewForm } from "./reviews/ReviewForm.js"
 import { getProducts } from "./products/ProductProvider.js"
+import { contactForm } from "./contact/ContactForm.js"
 
 LoginForm()
 CustomerNav()
 CategorySelect()
 ProductList()
+contactForm()
 
 //==================================TEST CODE====================================//
