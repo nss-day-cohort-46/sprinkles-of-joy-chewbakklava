@@ -1,6 +1,5 @@
 #modal--contact {
     display: none;
-    flex-direction: column;
   }
   
   #contactForm__select--label {
@@ -13,7 +12,21 @@
     margin: 5px 0px;
   }
   
-  #contactForm__submitButton{
-    align-self: flex-end;
-    margin: 5px 0px;
+  #submitContact{
+    width: 50%;
+    margin-top: 10px;
+    align-self: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #contactForm__message {
+    min-height: 200px;
+  }
+
+  #contactHeader {
+    text-align: center;
   }

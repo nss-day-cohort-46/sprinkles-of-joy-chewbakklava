@@ -1,3 +1,6 @@
+import { saveFormMessage } from "./ContactProvider.js"
+import { messageSubmitted } from "./ContactSubmitted.js"
+
 let formContainer = document.querySelector(".contact")
 
 export const contactForm = () => {
@@ -6,29 +9,67 @@ export const contactForm = () => {
         <div id="modal--contact" class="modal--parent">
             <div class="modal--content">
                 <form>
-                <h2>Contact Form</h2>
+                <h2 id="contactHeader">Contact Form</h2>
                 <label for="contactForm__email">Email</label>
                 <input id="contactForm__email" type="email" name="email">
 
-                <label for="contactForm__phone">Phone(Do not include special characters, such as dashes or parentheses)</label>
+                <label for="contactForm__phone">Phone<br>(Do not include special characters, such as dashes or parentheses)</label>
                 <input id="contactForm__phone" type="text" name="phoneNum">
                 
                 <label for="contactForm__message">Message</label>
                 <input id="contactForm__message" type="textarea" name="message">
 
-                <input type="submit" value="submit">
+                <div class="blankFieldsOnSubmit"></div>
+                <input id="submitContact" type="submit" value="submit">
                 </form>
             </div>
         </div>
     `
 }
 
-const eventHub = document.querySelector(".navContainer")
+const headerEventHub = document.querySelector(".navContainer")
 
-eventHub.addEventListener("click", event => {
-    debugger
+headerEventHub.addEventListener("click", event => {
+    
     if (event.target.id === "showContactForm") {
         const formModal = document.querySelector("#modal--contact")
         formModal.style.display = "flex"
+    }
+})
+
+
+const eventHub = document.querySelector("#container")
+export let submitMessageContainer
+
+eventHub.addEventListener("click", event => {
+    // debugger
+    if (event.target.id === "submitContact") {
+        event.preventDefault()
+        
+        // regular expression to test for accurate email format
+        const pattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/
+
+        const email = document.querySelector("#contactForm__email").value
+        const phone = document.querySelector("#contactForm__phone").value
+        const message = document.querySelector("#contactForm__message").value
+
+        // checks to make sure all fields are completed accurately
+        if (pattern.test(email) && phone.length === 10 && Number.isInteger(parseInt(phone)) && message !== "") {
+            // event.preventDefault()
+            const newFormMessage = {
+                email: email,
+                phone: parseInt(phone),
+                message: message
+            } 
+            saveFormMessage(newFormMessage)
+
+            submitMessageContainer = document.querySelector(".modal--content")
+            messageSubmitted()
+        } else {
+            const incompleteFormDiv = document.querySelector(".blankFieldsOnSubmit")   
+            incompleteFormDiv.innerHTML = `One of the fields was not completed accurately`
+
+        }
+        
     }
 })
