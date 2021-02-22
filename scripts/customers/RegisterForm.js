@@ -1,5 +1,5 @@
 import { authHelper } from "../auth/authHelper.js"
-import { customerLogin } from "./CustomerProvider.js"
+import { customerLogin, saveCustomer } from "./CustomerProvider.js"
 
 const eventHub = document.querySelector("#container")
 const contentTarget = document.querySelector(".form__register")
@@ -50,5 +50,23 @@ eventHub.addEventListener("click", evt => {
 
     const customEvent = new CustomEvent("showLoginForm")
     eventHub.dispatchEvent(customEvent)
+  }
+})
+
+eventHub.addEventListener("click", event => {
+  if (event.target.id === "customerRegister") {
+    event.preventDefault()
+    
+    const firstName = document.querySelector("#register-firstName").value
+    const lastName = document.querySelector("#register-lastName").value
+    const checked = document.querySelector("#register-rewards").checked
+
+    const newCustomer = {
+      name: `${firstName} ${lastName}`,
+      rewardsMember: checked,
+      email: document.querySelector("#register-email").value,
+      password: document.querySelector("#register-password").value
+    }
+    saveCustomer(newCustomer)
   }
 })
