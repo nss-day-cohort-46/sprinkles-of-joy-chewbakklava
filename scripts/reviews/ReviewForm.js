@@ -4,7 +4,7 @@ import { saveReview } from "./ReviewProvider.js"
 
 const eventHub = document.querySelector('#container')
 const reviewModalElement = document.querySelector('.productReview')
-const customerId = parseInt(authHelper.getCurrentUserId())
+let customerId
 
 eventHub.addEventListener("reviewFormRequested", e => {
     const productId = e.detail.productId
@@ -55,6 +55,7 @@ eventHub.addEventListener("showNewReviewForm", e => {
 
 eventHub.addEventListener("click", e => {
     if (e.target.id === "reviewForm__submitButton") {
+        customerId = parseInt(authHelper.getCurrentUserId())
         e.preventDefault()
         const review = {
             title: document.getElementById('reviewForm__title').value,
