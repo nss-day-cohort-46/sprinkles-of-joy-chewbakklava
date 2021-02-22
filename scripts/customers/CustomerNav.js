@@ -30,6 +30,10 @@ eventHub.addEventListener("userLoggedIn", event => {
   CustomerNav()
 })
 
+eventHub.addEventListener("userRegistered", event => {
+  CustomerNav()
+})
+
 eventHub.addEventListener("click", event => {
   if (event.target.id.startsWith("userNav--")) {
     

@@ -38,6 +38,7 @@ headerEventHub.addEventListener("click", event => {
     }
 })
 
+export const pattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/
 
 const eventHub = document.querySelector("#container")
 export let submitMessageContainer
@@ -48,7 +49,6 @@ eventHub.addEventListener("click", event => {
         event.preventDefault()
         
         // regular expression to test for accurate email format
-        const pattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/
 
         const email = document.querySelector("#contactForm__email").value
         const phone = document.querySelector("#contactForm__phone").value
