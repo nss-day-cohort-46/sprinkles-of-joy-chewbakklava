@@ -17,9 +17,19 @@ export const getCustomer = (id) => {
 }
 
 export const customerLogin = (email, password) => {
+  debugger
   return fetch(`${bakeryAPI.baseURL}/customers?email=${email}&password=${password}`)
     .then(res => res.json())
     .then(user => user.length ? user[0] : false)
 }
 
-export const saveCustomer = () => {}
+export const saveCustomer = (newCustomerObj) => {
+  return fetch(`${bakeryAPI.baseURL}/customers`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newCustomerObj)
+  })
+
+}

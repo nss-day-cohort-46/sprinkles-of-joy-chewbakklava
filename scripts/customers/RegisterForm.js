@@ -68,5 +68,16 @@ eventHub.addEventListener("click", event => {
       password: document.querySelector("#register-password").value
     }
     saveCustomer(newCustomer)
+    customerLogin(newCustomer.email, newCustomer.password)
+      .then(user => {
+        if (user) {
+          contentTarget.innerHTML = ""
+
+          authHelper.storeUserInSessionStorage(user.id)
+
+          const customEvent = new CustomEvent("userRegistered")
+          eventHub.dispatchEvent(customEvent)
+        } 
+      })
   }
 })
