@@ -63,7 +63,8 @@ eventHub.addEventListener("click", clickEvent => {
           const newOrder = {
             "customerId": currentCustomerId,
             "statusId": initialOrderStatus.id,
-            "timestamp": Date.now()
+            "timestamp": Date.now(),
+            "userDeleted": false
           }
           saveOrder(newOrder, productsInCart)
           resetCart()
