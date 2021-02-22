@@ -17,7 +17,7 @@ export const getCustomer = (id) => {
 }
 
 export const customerLogin = (email, password) => {
-  debugger
+  
   return fetch(`${bakeryAPI.baseURL}/customers?email=${email}&password=${password}`)
     .then(res => res.json())
     .then(user => user.length ? user[0] : false)
@@ -31,5 +31,5 @@ export const saveCustomer = (newCustomerObj) => {
     },
     body: JSON.stringify(newCustomerObj)
   })
-
+  .then(response => response.json())
 }

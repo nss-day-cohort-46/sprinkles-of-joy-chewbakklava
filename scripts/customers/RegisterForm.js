@@ -1,5 +1,6 @@
 import { authHelper } from "../auth/authHelper.js"
 import { customerLogin, getCustomers, saveCustomer, useCustomers } from "./CustomerProvider.js"
+import { pattern } from "../contact/ContactForm.js"
 
 const eventHub = document.querySelector("#container")
 const contentTarget = document.querySelector(".form__register")
@@ -56,52 +57,55 @@ eventHub.addEventListener("click", evt => {
 
 eventHub.addEventListener("click", event => {
   if (event.target.id === "customerRegisterSubmit") {
-    if () {}
     event.preventDefault()
-    getCustomers()
-    .then(() => {
-      const customerList = useCustomers()
+    const firstName = document.querySelector("#register-firstName").value
+    const lastName = document.querySelector("#register-lastName").value
+    const checked = document.querySelector("#register-rewards").checked
+    const email = document.querySelector("#register-email").value
+    const password = document.querySelector("#register-password").value
 
-      const firstName = document.querySelector("#register-firstName").value
-      const lastName = document.querySelector("#register-lastName").value
-      const checked = document.querySelector("#register-rewards").checked
-      const email = document.querySelector("#register-email").value
-      const password = document.querySelector("#register-password").value
+    if (pattern.test(email) && firstName !== "" && lastName !== "" && password !== "") {
+      
+      getCustomers()
+      .then(() => {
+        const customerList = useCustomers()
 
+        const matchingCustomer = customerList.filter(customer => customer.email === email)
 
-      const matchingCustomer = customerList.filter(customer => customer.email === email)
+        if (matchingCustomer.length === 0) {
+          const newCustomer = {
+            name: `${firstName} ${lastName}`,
+            rewardsMember: checked,
+            email: email,
+            password: password
+          }
 
-      if (matchingCustomer.length === 0) {
-        debugger
-        const newCustomer = {
-          name: `${firstName} ${lastName}`,
-          rewardsMember: checked,
-          email: email,
-          password: password
-        }
+          saveCustomer(newCustomer)
+          .then(savedCustomer => {
 
-        saveCustomer(newCustomer)
-        .then(customerLogin(newCustomer.email, newCustomer.password))
-        .then(getCustomers)
-          .then(()=> {
-              contentTarget.innerHTML = ""
+            contentTarget.innerHTML = ""
 
-              const updatedCustomers = useCustomers()
-    
-              authHelper.storeUserInSessionStorage(updatedCustomers[updatedCustomers.length - 1].id)
-    
-              const customEvent = new CustomEvent("userRegistered")
-              eventHub.dispatchEvent(customEvent)
-             
+            authHelper.storeUserInSessionStorage(savedCustomer.id)
+      
+            const customEvent = new CustomEvent("userRegistered")
+            eventHub.dispatchEvent(customEvent)
           })
-        } else {
-          debugger
-          let alreadyRegisteredContainer = document.querySelector(".alreadyRegistered")
-          alreadyRegisteredContainer.innerHTML += `
-          It looks like you already have an account. 
-          Please login or, if you forgot your email or password, use the Contact Form to request an account reset
-          `
-        }
-    }) 
+          
+          } else {
+            let alreadyRegisteredContainer = document.querySelector(".alreadyRegistered")
+
+            alreadyRegisteredContainer.innerHTML = `
+            It looks like you already have an account. 
+            Please login or, if you forgot your email or password, use the Contact Form to request an account reset
+            `
+          }
+      })
+    } else {
+      let alreadyRegisteredContainer = document.querySelector(".alreadyRegistered")
+
+      alreadyRegisteredContainer.innerHTML = `
+      All fields are not accurately completed
+      `
+    }
   }
 })
