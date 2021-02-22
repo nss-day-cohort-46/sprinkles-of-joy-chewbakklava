@@ -4,6 +4,8 @@
 
 This is a web application that serves as a portal for customers to interact with the local bakery Sprinkles of Joy and the services therein.
 
+nB. This is a student project assignment from the curriculum at [Nashville Software School](http://nashvillesoftwareschool.com)
+
 ![Tech Stack](https://img.shields.io/badge/Tech%20Stack-HTML%2C%20CSS%2C%20JS%2C%20json--server-blue)
 
 ### Features
