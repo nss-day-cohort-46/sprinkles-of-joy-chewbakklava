@@ -1,5 +1,5 @@
 import { authHelper } from "../auth/authHelper.js"
-import { customerLogin, saveCustomer } from "./CustomerProvider.js"
+import { customerLogin, getCustomers, saveCustomer, useCustomers } from "./CustomerProvider.js"
 
 const eventHub = document.querySelector("#container")
 const contentTarget = document.querySelector(".form__register")
@@ -36,7 +36,8 @@ const render = () => {
         <input type="checkbox" id="register-rewards" name="register-rewards">
         <label for="register-rewards">Yes, I would like to join the rewards program. </label>
         </fieldset>
-        <button id="customerRegister">Register</button>
+        <button id="customerRegisterSubmit">Register</button>
+        <p class="alreadyRegistered"></p>
       </form>
     `
   }
@@ -54,30 +55,53 @@ eventHub.addEventListener("click", evt => {
 })
 
 eventHub.addEventListener("click", event => {
-  if (event.target.id === "customerRegister") {
+  if (event.target.id === "customerRegisterSubmit") {
+    if () {}
     event.preventDefault()
+    getCustomers()
+    .then(() => {
+      const customerList = useCustomers()
+
+      const firstName = document.querySelector("#register-firstName").value
+      const lastName = document.querySelector("#register-lastName").value
+      const checked = document.querySelector("#register-rewards").checked
+      const email = document.querySelector("#register-email").value
+      const password = document.querySelector("#register-password").value
+
+
+      const matchingCustomer = customerList.filter(customer => customer.email === email)
+
+      if (matchingCustomer.length === 0) {
+        debugger
+        const newCustomer = {
+          name: `${firstName} ${lastName}`,
+          rewardsMember: checked,
+          email: email,
+          password: password
+        }
+
+        saveCustomer(newCustomer)
+        .then(customerLogin(newCustomer.email, newCustomer.password))
+        .then(getCustomers)
+          .then(()=> {
+              contentTarget.innerHTML = ""
+
+              const updatedCustomers = useCustomers()
     
-    const firstName = document.querySelector("#register-firstName").value
-    const lastName = document.querySelector("#register-lastName").value
-    const checked = document.querySelector("#register-rewards").checked
-
-    const newCustomer = {
-      name: `${firstName} ${lastName}`,
-      rewardsMember: checked,
-      email: document.querySelector("#register-email").value,
-      password: document.querySelector("#register-password").value
-    }
-    saveCustomer(newCustomer)
-    customerLogin(newCustomer.email, newCustomer.password)
-      .then(user => {
-        if (user) {
-          contentTarget.innerHTML = ""
-
-          authHelper.storeUserInSessionStorage(user.id)
-
-          const customEvent = new CustomEvent("userRegistered")
-          eventHub.dispatchEvent(customEvent)
-        } 
-      })
+              authHelper.storeUserInSessionStorage(updatedCustomers[updatedCustomers.length - 1].id)
+    
+              const customEvent = new CustomEvent("userRegistered")
+              eventHub.dispatchEvent(customEvent)
+             
+          })
+        } else {
+          debugger
+          let alreadyRegisteredContainer = document.querySelector(".alreadyRegistered")
+          alreadyRegisteredContainer.innerHTML += `
+          It looks like you already have an account. 
+          Please login or, if you forgot your email or password, use the Contact Form to request an account reset
+          `
+        }
+    }) 
   }
 })

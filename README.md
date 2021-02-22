@@ -1,87 +1,110 @@
-# Sprinkles of Joy
+# Sprinkles of Joy ala Chewbakklava
 
-[Google Draw ERD](https://docs.google.com/drawings/d/1RzkPSzAOyOO1Y_cofPfyiaggFiQ7U92v4BOln6qu9ME/edit?usp=sharing)
+## Description
 
-## Settings
-After each team member clones down the repository
-1. Make a copy of the `Settings.js.example` file in the `scripts` directory and remove the `.example` extension.
-1. Make a copy of the `bakerydb.json.example` file in the `api` directory and remove the `.example` extension.
-1. Run your local json-server with `json-server -p 8088 -w bakerydb.json` from the `api` directory.
-1. Run your application server with `serve`.
+This is a web application that serves as a portal for customers to interact with the local bakery Sprinkles of Joy and the services therein.
 
-## PR Template
+nB. This is a student project assignment from the curriculum at [Nashville Software School](http://nashvillesoftwareschool.com)
 
-Add a pull request template for this project with these [instructions](https://docs.github.com/en/github/building-a-strong-community/creating-a-pull-request-template-for-your-repository).
+![Tech Stack](https://img.shields.io/badge/Tech%20Stack-HTML%2C%20CSS%2C%20JS%2C%20json--server-blue)
 
-## ERD
+### Features
+___
+#### All visitors can:
 
-Your very first step is to create an Entity Relationship Diagram and get it approved by an instructor. Take a look at your database and use either dbdiagram.io or Lucidchart to build the ERD. Once your ERD has been approved, be sure to add a link to it in your README. If at any time during this project, your team needs to modify your ERD, please communicate the changes and get approval.
+* View a list (title, description, reviews) of all products
+* Filter product list by product type (Cake, Drink, Cookie, Bread)
+* Click on any star review to see more details about the review
+* Send a message to the bakery via the contact form
+* Build a cart by adding items to a cart
+* See a live subtotal of all items in the cart
+* Login to gain access to more features
 
-## A Note About Authentication
+#### Authorized users can:
 
-We want you to know that the login code we have given you is fake, completely insecure, and would never be implemented in a professional application. It is a simulation authentication using very simplistic tools, because authentication is not a learning objective of students at NSS. You will be using [session storage](https://javascript.info/localstorage#sessionstorage) to keep track of which user has logged into the application.
+* Place an order with at least one product in a cart
+* Leave a review
+* Delete their own reviews
+* View their own order history
+* Delete their own orders marked "ready for pickup"
+* Logout
 
-## HTTP Response Status Codes
-What do the status codes in HTTP responses mean? Check it out [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
-## Features
+### Background
 
-### Reviews
-  1. A customer can see all reviews for a product. Does the current database store reviews? How will your ERD need to change?
-  1. An authenticated customer can add a review for any product on the menu. Along with the review text, a customer can also provide a rating using the numbers 1-5.
-  1. An authenticated customer can delete any review they wrote. A customer cannot delete a review another customer wrote.
+This application is meant to address the bakery's need to have a funcitonal online presence in which customers can view products, read and leave reviews, manage orders, and contact the bakery from the comfort of their personal computer, tablet, or phone.
 
-### Customer's Order History
-  1. A customer's order history should only list the orders they have placed, no other customer's orders should be displayed. 
-  1. When a customer views their order history, each product in the order should be displayed. 
-  1. The total cost for each order should also be displayed.
-  1. A customer may delete any past order with the status of `Ready for Pickup`.
 
-### Contact Form
-  1. When the customer clicks the *Contact* link in the navbar, they should be presented with a form.
-  1. The form should allow them to provide an email, a phone number and the message they want to communicate.
-  1. When the form is submitted, the data the customer provided is saved.
+## Visuals
 
-### Menu
-  1. When the customer selects the first option in the menu category dropdown, the customer should see the all the products.
+* Landing Page (not signed in)
+![image](./images/demoImages/main(unauth).png)
+* Landing Page (signed in)
+![image](./images/demoImages/main(auth).png)
+* Review Detail
+![image](./images/demoImages/Review.png)
+* Write a review
+![image](./images/demoImages/createReview.png)
+* View Previous Orders
+![image](./images/demoImages/previousOrders.png)
+* Contact Form
+![image](./images/demoImages/contactForm.png)
 
-### Customer's Shopping Cart
-  1. After an order is placed, the cart should be reset to contain zero products.
-  1. The *Place Order* button is disabled when there are no items in the cart.
+## Installation
 
-### Logout
-  1. Provide an affordance for the customer to log out of their account.
-  1. When a customer logs out, the customer portal should not display any user specific information. Instead the customer sees the login form.
+### Requirements
 
-## User experiance & README
-1. Before your team moves on to the stretch goals, take some time to add some styling to improve the user experiance of the application 
-1. Write a good README for the application.
+[json-server](https://www.npmjs.com/package/json-server)
 
-## Stretch Goals
+### Instructions for Use
+1. Clone or fork this repository to your machine
+2. Run a server in the root directory of the project that serves index.html
+3. Make a copy of the Settings.js.example file in the scripts directory and remove the .example extension.
+4. Make a copy of the bakerydb.json.example file in the api directory and remove the .example extension.
+5. Using [json-server](https://www.npmjs.com/package/json-server), serve `bakerydb.json` from the `api/` directory
+6. Load the application in a web browser
+    
+## Support
 
-### Rewards Program
-  1. In the customer portal, next to the welcome message, indicate to the customer visually if they are part of the rewards program.
-  1. If they are not part of the rewards program, provide an affordance for them to join the rewards program. Be sure to update the database.
+* Please fill out an issue ticket if you run into any major issues or bugs that should be addressed.
+* Those with access to the Nashville Software School slack can reach the devs `@amart` and `@Kaitlin Kelley`
 
-### Reviews
-  1. A customer can edit any review they wrote. A customer cannot edit a review another customer wrote.
-  1. Provide a more visually appealing way to display the rating that is part of the review. For example, a star rating.
+## Roadmap
 
-### Register
-  1. Using the register form, a customer without an account should be able to create a new account.
-  1. When the customer successfully registers for a new account, they should also be authenticated into the application.
+#### Future features could include:
+* Implementing the ability to register as a user for the website
+* Adding scroll functionality to modal windows
+* Creating a "soft delete" functionality for orders the customer may not want to view anymore, but the bakery might like to keep a record of
+* The ability to edit a user's own reviews
+* The ability to join the rewards program as a user
+* The ability to edit your cart (deleting a single item in your cart)
+* Grouping similar cart items with an item count
+* Altering aforementioned item count within the cart
+* Sort and filter order history based on timestamp and status
+* Create a more visually appealing confirmation that an order has been placed.
+---
+---
+## Contributing
 
-### Evolving into a Cat Cafe
-  1. Add an additional section on the web application where the customer can select one of the available cat breeds from a dropdown.
-  1. When a breed is selected, display the images of 4 cats from that breed.
-  1. [TheCatAPI](https://docs.thecatapi.com/) will provide both the list of breeds and the cat images.
+The more the merrier! Please feel free to fork this repository and create a pull request with any changes or improvements you can think of. 
 
-### Customer's Shopping Cart
-  1. A customer can not place an order unless they have logged in to their account. They can still add items to the cart without being authenticated.
-  1. A customer can remove items from their shopping cart, whether they are logged in or not.
-  1. Show a count of the number of items in the customer's cart in parenthesis next to *My Cart*. 
+That being said, we don't really maintain this project, so we probably won't read pull requests. Sorry `¯\_(ツ)_/¯`
 
-### Customer's Order History
-  1. Provide a drop down for the customer to filter previous orders by their status.
-  1. Display the previous orders from most recent, descending.
-  1. Modify the feature where a customer can delete any of their previous orders with the status of `Ready for Pickup`. Instead of permanently removing it from the database, implement a soft delete. Does there need to be any changes to your ERD?
+Please use the Pull Request Template supplied in the root directory.
+
+
+
+## Authors & Acknowledgements
+
+Originally created by some people who left the project.
+
+Recreated and rebuilt by [Alex Martin](https://github.com/SubtleCo) and [Kaitlin Kelley](https://github.com/kjk1325).
+
+Beautifully supported by our illustrious and industrious instructors [Scott Silver](https://github.com/Scott47) and [Aja Washington](https://github.com/ajawashington).
+Lead instructor - [Jisie David](https://github.com/jisie)
+
+
+
+## License
+
+Open source, but not really.
