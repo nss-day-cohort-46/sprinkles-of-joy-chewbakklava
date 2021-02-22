@@ -1,0 +1,39 @@
+#modal--contact {
+    display: none;
+  }
+  
+  #contactForm__select--label {
+    display: block;
+  }
+  
+  #contactForm__top {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0px;
+  }
+  
+  #submitContact{
+    width: 50%;
+    margin-top: 10px;
+    align-self: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #contactForm__message {
+    min-height: 200px;
+  }
+
+  #contactHeader {
+    text-align: center;
+  }
+
+  #contactForm__close {
+    width: 20px;
+    align-self: flex-end;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+  }
