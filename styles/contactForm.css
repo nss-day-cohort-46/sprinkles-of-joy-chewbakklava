@@ -30,3 +30,10 @@
   #contactHeader {
     text-align: center;
   }
+
+  #contactForm__close {
+    width: 20px;
+    align-self: flex-end;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+  }

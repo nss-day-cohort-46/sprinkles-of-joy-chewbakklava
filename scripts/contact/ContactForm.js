@@ -9,6 +9,7 @@ export const contactForm = () => {
         <div id="modal--contact" class="modal--parent">
             <div class="modal--content">
                 <form>
+                <button id="contactForm__close">X</button>
                 <h2 id="contactHeader">Contact Form</h2>
                 <label for="contactForm__email">Email</label>
                 <input id="contactForm__email" type="email" name="email">
@@ -71,5 +72,12 @@ eventHub.addEventListener("click", event => {
 
         }
         
+    }
+})
+
+eventHub.addEventListener("click", event => {
+    if (event.target.id === "contactForm__close") {
+        const formModal = document.querySelector("#modal--contact")
+        formModal.style.display = "none"
     }
 })
