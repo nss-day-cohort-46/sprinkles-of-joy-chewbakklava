@@ -38,7 +38,7 @@ export const filterOrders = (statusId) => { // returns array of orders for curre
   const loggedInCustomerId = authHelper.getCurrentUserId()
   const allCustomerOrders = customerOrders.filter(order => order.customerId === parseInt(loggedInCustomerId))
   // Sorting orders by timestamp, descending
-  const sortedCustomerOrders = allCustomerOrders.sort((a,b) => b.timestamp - a.timestamp)
+  const sortedCustomerOrders = allCustomerOrders.sort((a,b) => b.id - a.id)
   filteredOrders = sortedCustomerOrders
   // check to see if a status filter was selected. If so, filter by order status
   if (statusId > 0) {
