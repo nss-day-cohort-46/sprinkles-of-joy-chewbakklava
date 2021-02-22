@@ -1,6 +1,7 @@
 import { authHelper } from "../auth/authHelper.js"
 import { getCustomer } from "../customers/CustomerProvider.js"
 import { getProducts, useProducts } from "../products/ProductProvider.js"
+import { getStatuses, useStatuses } from "../statuses/StatusProvider.js"
 import { Order } from "./Order.js"
 import { getOrderProducts, useOrderProducts } from "./OrderProductProvider.js"
 import { getOrders, useOrders } from "./OrderProvider.js"
@@ -11,28 +12,39 @@ const contentContainer = document.querySelector(".userOrders")
 let customerOrders = []
 let orderProducts = []
 let allProducts = []
+let allStatuses
 
-export const OrderList = () => {
+export const OrderList = (statusId) => {
   
   if (authHelper.isUserLoggedIn()) {
     getOrders()
     .then(getProducts)
     .then(getOrderProducts)
+    .then(getStatuses)
     .then(() => {
       customerOrders = useOrders()
       orderProducts = useOrderProducts()
       allProducts = useProducts()
-      filterOrders()
+      allStatuses = useStatuses()
+      filterOrders(statusId)
       makeHtmlRep()
-      render()
+      render(statusId)
     })
   }
 }
 
 export let filteredOrders
-export const filterOrders = () => { // returns array of orders for current logged in customer
+export const filterOrders = (statusId) => { // returns array of orders for current logged in customer
   const loggedInCustomerId = authHelper.getCurrentUserId()
-  filteredOrders = customerOrders.filter(order => order.customerId === parseInt(loggedInCustomerId))}
+  const allCustomerOrders = customerOrders.filter(order => order.customerId === parseInt(loggedInCustomerId))
+  // Sorting orders by timestamp, descending
+  const sortedCustomerOrders = allCustomerOrders.sort((a,b) => b.id - a.id)
+  filteredOrders = sortedCustomerOrders
+  // check to see if a status filter was selected. If so, filter by order status
+  if (statusId > 0) {
+    filteredOrders = filteredOrders.filter(order => order.statusId === statusId)
+  }
+}
 
 let ordersHtmlRepresentation
 const makeHtmlRep = () => {
@@ -53,15 +65,26 @@ const makeHtmlRep = () => {
 }
 
 
-const render = () => {
+
+
+
+const render = (statusId) => {
   // const ordersHtmlRepresentation = customerOrders.map(order => Order(order)).join("")
+  
+  const options = allStatuses.map(status => `<option ${statusId === status.id ? "selected " : ""}value="${status.id}">${status.label}</option>`).join("")
+  const statusSelect = `
+    <select class="orderStatusSelect">
+      <option ${statusId === 0 ? "selected " : ""} value="0">All orders</option>
+      ${options}
+    </select>`
 
   contentContainer.innerHTML = `
   <div id="orders__modal" class="modal--parent">
         <div class="modal--content">
         <h3>Previous Orders</h3>
         <div>
-        <h5>Ordered on</h5>
+        <h5>Filter by Order Status</h5>
+        ${statusSelect}
         ${ordersHtmlRepresentation}
         </div>
         <button id="modal--close">Close Order History</button>
@@ -86,4 +109,11 @@ const closeModal = () => {
 
 eventHub.addEventListener("ordersStateChanged", event => {
   OrderList()
+})
+
+eventHub.addEventListener("change", e => {
+  if (e.target.classList.contains("orderStatusSelect")) {
+    const statusId = parseInt(e.target.value)
+    OrderList(statusId)
+  }
 })
