@@ -39,12 +39,10 @@ export const filterOrders = (statusId) => { // returns array of orders for curre
   const allCustomerOrders = customerOrders.filter(order => order.customerId === parseInt(loggedInCustomerId))
   // Sorting orders by timestamp, descending
   const sortedCustomerOrders = allCustomerOrders.sort((a,b) => b.timestamp - a.timestamp)
-  // Check to see if user has deleted an order
-  const undeletedOrders = sortedCustomerOrders.filter(order => order.userDeleted === false)
-  filteredOrders = undeletedOrders
+  filteredOrders = sortedCustomerOrders
   // check to see if a status filter was selected. If so, filter by order status
   if (statusId > 0) {
-    filteredOrders = undeletedOrders.filter(order => order.statusId === statusId)
+    filteredOrders = filteredOrders.filter(order => order.statusId === statusId)
   }
 }
 

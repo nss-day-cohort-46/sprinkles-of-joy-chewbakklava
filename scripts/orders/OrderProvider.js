@@ -43,28 +43,9 @@ const dispatchStateChangeEvent = () => {
   eventHub.dispatchEvent(ordersStateChangedEvent)
 }
 
-// export const deleteOrder = (orderObj) => {
-//   return fetch(`${bakeryAPI.baseURL}/orders/${orderObj.id}`, {
-//     method: "DELETE"
-//   })
-//   .then(getOrders)
-//   .then(dispatchStateChangeEvent)
-// }
-
-export const softDeleteOrder = order => {
-  const deletedOrder = {
-    id: order.id,
-    customerId: order.customerId,
-    statusId: order.statusId,
-    timestamp: order.timestamp,
-    userDeleted: true
-  }
-  return fetch(`${bakeryAPI.baseURL}/orders/${order.id}`, {
-    method: "PUT",
-    headers: {
-      "Content-type": "application/json"
-    },
-    body: JSON.stringify(deletedOrder)
+export const deleteOrder = (orderObj) => {
+  return fetch(`${bakeryAPI.baseURL}/orders/${orderObj.id}`, {
+    method: "DELETE"
   })
   .then(getOrders)
   .then(dispatchStateChangeEvent)

@@ -208,92 +208,79 @@
       "id": 1,
       "customerId": 3,
       "statusId": 1,
-      "timestamp": 1613628996949,
-      "userDeleted": false
+      "timestamp": 1613628996949
     },
     {
       "id": 2,
       "customerId": 3,
       "statusId": 1,
-      "timestamp": 1613628996949,
-      "userDeleted": false
+      "timestamp": 1613628996949
     },
     {
       "id": 3,
       "customerId": 1,
       "statusId": 1,
-      "timestamp": 1613628996949,
-      "userDeleted": false
+      "timestamp": 1613628996949
     },
     {
       "customerId": 3,
       "statusId": 1,
       "timestamp": 1613629258759,
-      "id": 6,
-      "userDeleted": false
+      "id": 6
     },
     {
       "customerId": 1,
       "statusId": 1,
       "timestamp": 1613631214988,
-      "id": 7,
-      "userDeleted": false
+      "id": 7
     },
     {
       "customerId": 1,
       "statusId": 1,
       "timestamp": 1613631242333,
-      "id": 8,
-      "userDeleted": false
+      "id": 8
     },
     {
       "customerId": 2,
       "statusId": 2,
       "timestamp": 1613631255084,
-      "id": 9,
-      "userDeleted": false
+      "id": 9
     },
     {
       "customerId": 3,
       "statusId": 1,
       "timestamp": 1613631281534,
-      "id": 10,
-      "userDeleted": false
+      "id": 10
     },
     {
       "customerId": 1,
       "statusId": 2,
       "timestamp": 1613631291930,
-      "id": 11,
-      "userDeleted": false
+      "id": 11
     },
     {
       "customerId": 2,
       "statusId": 3,
       "timestamp": 1613631302278,
-      "id": 12,
-      "userDeleted": false
+      "id": 12
     },
     {
       "customerId": 3,
       "statusId": 3,
       "timestamp": 1613631309392,
-      "id": 13,
-      "userDeleted": false
+      "id": 13
     },
     {
       "customerId": 2,
       "statusId": 3,
       "timestamp": 1613768247744,
-      "id": 14,
-      "userDeleted": false
+      "id": 14
     },
     {
       "customerId": 2,
       "statusId": 3,
       "timestamp": 1613768265214,
-      "id": 15,
-      "userDeleted": false
+      "id": 15
     }
   ],
   "orderProducts": [
