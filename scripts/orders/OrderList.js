@@ -38,11 +38,15 @@ export const filterOrders = (statusId) => { // returns array of orders for curre
   const loggedInCustomerId = authHelper.getCurrentUserId()
   const allCustomerOrders = customerOrders.filter(order => order.customerId === parseInt(loggedInCustomerId))
   // Sorting orders by timestamp, descending
-  const sortedCustomerOrders = allCustomerOrders.sort((a,b) => b.id - a.id)
-  filteredOrders = sortedCustomerOrders
+
+  const sortedCustomerOrders = allCustomerOrders.sort((a,b) => b.timestamp - a.timestamp)
+  // Check to see if user has deleted an order
+  const undeletedOrders = sortedCustomerOrders.filter(order => order.userDeleted === false)
+  filteredOrders = undeletedOrders
+
   // check to see if a status filter was selected. If so, filter by order status
   if (statusId > 0) {
-    filteredOrders = filteredOrders.filter(order => order.statusId === statusId)
+    filteredOrders = undeletedOrders.filter(order => order.statusId === statusId)
   }
 }
 
