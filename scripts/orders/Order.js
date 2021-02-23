@@ -1,7 +1,7 @@
 import { authHelper } from "../auth/authHelper.js"
 import { getStatuses, useStatuses } from "../statuses/StatusProvider.js"
 import { filteredOrders, OrderList} from "./OrderList.js"
-import { getOrders, deleteOrder } from "./OrderProvider.js"
+import { getOrders, softDeleteOrder } from "./OrderProvider.js"
 
 
 
@@ -40,8 +40,10 @@ eventHub.addEventListener("click", event => {
           let orderToDelete = filteredOrders.find(order => order.id === parseInt(orderId))
             // checks to see if the order that the user wants to delete is allowed to be deleted
             if (orderToDelete.statusId === statuses[0].id) {
+
               // Delete orders that are Ready For Pickup
-              deleteOrder(orderToDelete)
+              softDeleteOrder(orderToDelete)
+
 
           } else {
             // Tell the user the order can't be deleted
