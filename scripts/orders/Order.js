@@ -40,7 +40,7 @@ eventHub.addEventListener("click", event => {
           let orderToDelete = filteredOrders.find(order => order.id === parseInt(orderId))
             // checks to see if the order that the user wants to delete is allowed to be deleted
             if (orderToDelete.statusId === statuses[0].id) {
-              // Delete orders that are Ready For Pickup
+              // Delete orders that are Ready For Pickup (extra comment)
               deleteOrder(orderToDelete)
 
           } else {
